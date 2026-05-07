@@ -1,0 +1,61 @@
+# Virtual Environment
+venv/
+.env/
+ENV/
+env/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment variables
+.env
+.env.*
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build files
+build/
+dist/
+*.egg-info/
+
+# Docker
+docker-compose.override.yml
+
+# Temporary files
+tmp/
+temp/
+
+# Secrets
+secrets.json
+credentials.json
+*.pem
+*.key
+
+# Airflow
+airflow.db
+logs/
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+
+# Mac/Linux hidden files
+.*swp
