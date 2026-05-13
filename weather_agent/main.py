@@ -1,3 +1,5 @@
+# main.py
+
 import os
 
 from openai import OpenAI
@@ -6,7 +8,8 @@ from dotenv import load_dotenv
 from agent import (
     SYSTEM_PROMPT,
     AgentResponse,
-    get_weather
+    get_weather,
+    run_cmd
 )
 
 load_dotenv()
@@ -62,21 +65,29 @@ def main():
                 f"({parsed_response.input})"
             )
 
+            tool_result = ""
+
+            # Weather Tool
             if parsed_response.function == "get_weather":
 
                 tool_result = get_weather(parsed_response.input)
 
-                print("\nOBSERVATION:", tool_result)
+            # CMD Tool
+            elif parsed_response.function == "run_cmd":
 
-                message_history.append({
-                    "role": "assistant",
-                    "content": parsed_response.model_dump_json()
-                })
+                tool_result = run_cmd(parsed_response.input)
 
-                message_history.append({
-                    "role": "user",
-                    "content": f"OBSERVATION: {tool_result}"
-                })
+            print("\nOBSERVATION:", tool_result)
+
+            message_history.append({
+                "role": "assistant",
+                "content": parsed_response.model_dump_json()
+            })
+
+            message_history.append({
+                "role": "user",
+                "content": f"OBSERVATION: {tool_result}"
+            })
 
             continue
 
